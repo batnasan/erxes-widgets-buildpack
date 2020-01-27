@@ -24,6 +24,8 @@ fetch_erxes_widgets() {
 
     git clone $widgets_release_url $build_dir
     cd $build_dir && git checkout heroku_button
+
+    echo "web: cd widgets && npm start" > $proc_file
 }
 
 fetch_erxes_widgets
