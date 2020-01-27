@@ -10,6 +10,7 @@ bp_dir=$(dirname $(dirname $0))
 
 docs_dir="docs"
 ui_dir="ui"
+proc_file="Procfile"
 
 fetch_erxes_widgets() {
     # TODO: update repo url after merge
@@ -23,7 +24,8 @@ fetch_erxes_widgets() {
 
     git clone $widgets_release_url $build_dir
     cd $build_dir && git checkout heroku_button
-    
+
+    : '
     if [ -d $docs_dir ]; then
         rm -rf $docs_dir
         echo "-----> deleted docs dir"
@@ -34,12 +36,13 @@ fetch_erxes_widgets() {
         echo "-----> deleted ui dir"
     fi
 
-    if [ -f "Procfile" ]; then
-        rm -rf $ui_dir
+    if [ -f $proc_file ]; then
+        rm -rf $proc_file
         echo "-----> deleted Procfile"
     fi
 
-    mv $build_dir/widgets/* $build_dir/
+    #mv $build_dir/widgets/* $build_dir/
+    '
 }
 
 fetch_erxes_widgets
