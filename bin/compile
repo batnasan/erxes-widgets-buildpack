@@ -8,15 +8,33 @@ cache_dir=$2
 env_dir=$3
 bp_dir=$(dirname $(dirname $0))
 
+docs_dir="docs"
+ui_dir="ui"
+
 fetch_erxes_widgets() {
     local widgets_release_url="https://github.com/batnasan/erxes.git"
+
+    if [ -d $build_dir ]; then
+        rm -rf $build_dir
+    fi
+    mkdir -p $build_dir
+    echo "-----> Created build_dir $build_dir"
+
     git clone $widgets_release_url $build_dir
     cd $build_dir && git checkout heroku_button
+    
+    if [ -d $docs_dir ]; then
+        rm -rf $docs_dir
+        echo "deleted docs dir"
+    fi
+
+    if [ -d $ui_dir ]; then
+        rm -rf $ui_dir
+        echo "deleted ui dir"
+    fi
+
     mv $build_dir/widgets/* $build_dir/
 }
-
-mkdir -p $build_dir
-echo "-----> Created build_dir $build_dir"
 
 fetch_erxes_widgets
 echo "-----> Downloaded widgets to /app"
