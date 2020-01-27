@@ -14,8 +14,6 @@ cache_dir=$2
 env_dir=$3
 bp_dir=$(dirname $(dirname $0))
 
-echo "-----> Running"
-
 fetch_erxes_widgets() {
     local widgets_release_url="https://github.com/erxes/erxes-widgets/releases/download/0.12.0/erxes-widgets_0.12.0.tar.gz"
 
