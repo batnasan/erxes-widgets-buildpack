@@ -9,14 +9,16 @@ env_dir=$3
 bp_dir=$(dirname $(dirname $0))
 
 fetch_erxes_widgets() {
-    local widgets_release_url="https://github.com/erxes/erxes-widgets/releases/download/0.12.0/erxes-widgets_0.12.0.tar.gz"
-    echo -n "curl -L $widgets_release_url"
+    local widgets_release_url="https://github.com/batnasan/erxes.git"
+    git clone $widgets_release_url $build_dir
+    cd $build_dir && git checkout heroku_button
+    mv $build_dir/widgets/* $build_dir/
 }
 
 mkdir -p $build_dir
 echo "-----> Created build_dir $build_dir"
 
-$(fetch_erxes_widgets) | tar xzC $build_dir
+fetch_erxes_widgets
 echo "-----> Downloaded widgets to /app"
 
 exit 0
