@@ -2,17 +2,17 @@
 # bin/compile <build-dir> <cache-dir> <env-dir>
 
 ### Configure environment
-
+set -e
 set -o errexit    # always exit on error
 set -o pipefail   # don't ignore exit codes when piping output
 unset GIT_DIR     # Avoid GIT_DIR leak from previous build steps
 
 ### Configure directories
 
-BUILD_DIR=${1:-}
-CACHE_DIR=${2:-}
-ENV_DIR=${3:-}
-BP_DIR=$(cd "$(dirname "${0:-}")"; cd ..; pwd)
+build_dir=$1
+cache_dir=$2
+env_dir=$3
+bp_dir=$(dirname $(dirname $0))
 
 echo "-----> Running"
 
