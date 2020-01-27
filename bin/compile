@@ -10,15 +10,13 @@ bp_dir=$(dirname $(dirname $0))
 
 fetch_erxes_widgets() {
     local widgets_release_url="https://github.com/erxes/erxes-widgets/releases/download/0.12.0/erxes-widgets_0.12.0.tar.gz"
-
-    tar -C $build_dir -zxvf $widgets_release_url
-
-    echo "-----> Downloaded widgets to /app"
+    echo -n "curl -L $widgets_release_url"
 }
 
 mkdir -p $build_dir
 echo "-----> Created build_dir $build_dir"
 
-$(fetch_erxes_widgets)
+$(fetch_erxes_widgets) | tar xzC $build_dir
+echo "-----> Downloaded widgets to /app"
 
 exit 0
