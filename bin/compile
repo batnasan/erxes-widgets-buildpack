@@ -12,6 +12,7 @@ docs_dir="docs"
 ui_dir="ui"
 
 fetch_erxes_widgets() {
+    # TODO: update repo url after merge
     local widgets_release_url="https://github.com/batnasan/erxes.git"
 
     if [ -d $build_dir ]; then
@@ -25,12 +26,17 @@ fetch_erxes_widgets() {
     
     if [ -d $docs_dir ]; then
         rm -rf $docs_dir
-        echo "deleted docs dir"
+        echo "-----> deleted docs dir"
     fi
 
     if [ -d $ui_dir ]; then
         rm -rf $ui_dir
-        echo "deleted ui dir"
+        echo "-----> deleted ui dir"
+    fi
+
+    if [ -f "Procfile" ]; then
+        rm -rf $ui_dir
+        echo "-----> deleted Procfile"
     fi
 
     mv $build_dir/widgets/* $build_dir/
