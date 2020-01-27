@@ -24,25 +24,6 @@ fetch_erxes_widgets() {
 
     git clone $widgets_release_url $build_dir
     cd $build_dir && git checkout heroku_button
-
-    : '
-    if [ -d $docs_dir ]; then
-        rm -rf $docs_dir
-        echo "-----> deleted docs dir"
-    fi
-
-    if [ -d $ui_dir ]; then
-        rm -rf $ui_dir
-        echo "-----> deleted ui dir"
-    fi
-
-    if [ -f $proc_file ]; then
-        rm -rf $proc_file
-        echo "-----> deleted Procfile"
-    fi
-
-    #mv $build_dir/widgets/* $build_dir/
-    '
 }
 
 fetch_erxes_widgets
