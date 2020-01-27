@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+# bin/compile <build-dir> <cache-dir> <env-dir>
+
+### Configure environment
+
+set -o errexit    # always exit on error
+set -o pipefail   # don't ignore exit codes when piping output
+unset GIT_DIR     # Avoid GIT_DIR leak from previous build steps
+
+### Configure directories
+
+BUILD_DIR=${1:-}
+CACHE_DIR=${2:-}
+ENV_DIR=${3:-}
+BP_DIR=$(cd "$(dirname "${0:-}")"; cd ..; pwd)
+
+fetch_erxes_widgets() {
+    local widgets_release_url="https://github.com/erxes/erxes-widgets/releases/download/0.12.0/erxes-widgets_0.12.0.tar.gz"
+    local dest_path="$cache_dir/$widgets_release_url"
+
+    if [ -f "$dest_path" ]; then
+        echo -n "cat $dest_path"
+    else
+        echo -n "curl -L $widgets_release_url"
+    fi
+}
+
+mkdir -p $build_dir
+
+$(fetch_erxes_widgets) | tar xzC $build_dir/ 
+echo "-----> Downloaded widgets to /app"
+
+#tar -C erxes-widgets -zxvf 
+
+exit 0
