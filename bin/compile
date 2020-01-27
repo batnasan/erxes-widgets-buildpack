@@ -16,20 +16,14 @@ BP_DIR=$(cd "$(dirname "${0:-}")"; cd ..; pwd)
 
 fetch_erxes_widgets() {
     local widgets_release_url="https://github.com/erxes/erxes-widgets/releases/download/0.12.0/erxes-widgets_0.12.0.tar.gz"
-    local dest_path="$cache_dir/$widgets_release_url"
 
-    if [ -f "$dest_path" ]; then
-        echo -n "cat $dest_path"
-    else
-        echo -n "curl -L $widgets_release_url"
-    fi
+    tar -C $build_dir -zxvf $widgets_release_url
+
+    echo "-----> Downloaded widgets to /app"
 }
 
 mkdir -p $build_dir
 
-$(fetch_erxes_widgets) | tar xzC $build_dir/ 
-echo "-----> Downloaded widgets to /app"
-
-#tar -C erxes-widgets -zxvf 
+$(fetch_erxes_widgets)
 
 exit 0
