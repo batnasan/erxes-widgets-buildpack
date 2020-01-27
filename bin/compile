@@ -22,8 +22,8 @@ fetch_erxes_widgets() {
     mkdir -p $build_dir
     echo "-----> Created build_dir $build_dir"
 
-    git clone $widgets_release_url $build_dir
-    cd $build_dir && git checkout heroku_button
+    git clone --quiet $widgets_release_url $build_dir
+    cd $build_dir && git checkout --quiet heroku_button
 
     echo "web: cd widgets && npm start" > $proc_file
 }
