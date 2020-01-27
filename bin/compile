@@ -1,13 +1,7 @@
 #!/usr/bin/env bash
 # bin/compile <build-dir> <cache-dir> <env-dir>
 
-### Configure environment
 set -e
-set -o errexit    # always exit on error
-set -o pipefail   # don't ignore exit codes when piping output
-unset GIT_DIR     # Avoid GIT_DIR leak from previous build steps
-
-### Configure directories
 
 build_dir=$1
 cache_dir=$2
@@ -23,6 +17,7 @@ fetch_erxes_widgets() {
 }
 
 mkdir -p $build_dir
+echo "-----> Created build_dir $build_dir"
 
 $(fetch_erxes_widgets)
 
