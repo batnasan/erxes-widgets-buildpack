@@ -13,8 +13,7 @@ ui_dir="ui"
 proc_file="Procfile"
 
 fetch_erxes_widgets() {
-    # TODO: update repo url after merge
-    local widgets_release_url="https://github.com/batnasan/erxes.git"
+    local widgets_release_url="https://github.com/erxes/erxes.git"
 
     if [ -d $build_dir ]; then
         rm -rf $build_dir
@@ -23,7 +22,7 @@ fetch_erxes_widgets() {
     echo "-----> Created build_dir $build_dir"
 
     git clone --quiet $widgets_release_url $build_dir
-    cd $build_dir && git checkout --quiet heroku_button
+    cd $build_dir && git checkout --quiet develop
 
     echo "web: cd widgets && npm start" > $proc_file
 }
